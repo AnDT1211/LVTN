@@ -118,14 +118,14 @@ xlabel('Car speed (km/h)')
 ylabel('ERROR (%)')
 tit = strcat('Damping Ratio Calculation of Air Spring');
 title(tit)
-
+ylim([-19.4, -17.6])
 
 figure(4)
-plot(VLin, IRC_ZT_err_lin, 'b')
+plot(VLin, IRC_ZT_err_lin, 'b' ,'LineWidth',2)
 hold on
-plot(VLin, GBT_ZT_err_lin, 'm')
-plot(VLin, IRCSUG_ZT_err_lin, 'r')
-plot(VLin, GBTSUG_ZT_err_lin, 'c')
+plot(VLin, GBT_ZT_err_lin, 'm' ,'LineWidth',2)
+plot(VLin, IRCSUG_ZT_err_lin, 'r' ,'LineWidth',2)
+plot(VLin, GBTSUG_ZT_err_lin, 'c' ,'LineWidth',2)
 % plot([VLin(1), VLin(end)], [0 0]);
 hold off;
 grid on
@@ -135,6 +135,7 @@ xlabel('Car speed (km/h)')
 ylabel('ERROR (%)')
 tit = strcat('Damping Ratio Calculation of Leaf Spring');
 title(tit)
+ylim([-19.4, -17.6])
 
 
 

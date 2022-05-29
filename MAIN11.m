@@ -1,6 +1,7 @@
 clc; clear; close all;
 
 
+load M20.mat;
 
 % init_params = INIT_Params();
 % 
@@ -202,9 +203,13 @@ load('M11.mat');
 figure(4)
 % X = [init_params.vLin(b_gbt_non), init_params.vLin(b_ircSUG_non), init_params.vLin(b_gbtSUG_non)]
 % x = [1980 1990 2000];
-ygbt_non = [IRC_FN_err_non(b_gbt_non), GBT_FN_err_non(b_gbt_non), IRCSUG_FN_err_non(b_gbt_non), GBTSUG_FN_err_non(b_gbt_non)];
-yircSUG_non = [IRC_FN_err_non(b_ircSUG_non), GBT_FN_err_non(b_ircSUG_non), IRCSUG_FN_err_non(b_ircSUG_non), GBTSUG_FN_err_non(b_ircSUG_non)];
-ygbtSUG_non = [IRC_FN_err_non(b_gbtSUG_non), GBT_FN_err_non(b_gbtSUG_non), IRCSUG_FN_err_non(b_gbtSUG_non), GBTSUG_FN_err_non(b_gbtSUG_non)];
+ygbt_non = [fn_old_err_non, IRC_FN_err_non(b_gbt_non), GBT_FN_err_non(b_gbt_non), ...
+    IRCSUG_FN_err_non(b_gbt_non), GBTSUG_FN_err_non(b_gbt_non)];
+yircSUG_non = [fn_old_err_non, IRC_FN_err_non(b_ircSUG_non), GBT_FN_err_non(b_ircSUG_non),...
+    IRCSUG_FN_err_non(b_ircSUG_non), GBTSUG_FN_err_non(b_ircSUG_non)];
+ygbtSUG_non = [fn_old_err_non, IRC_FN_err_non(b_gbtSUG_non), GBT_FN_err_non(b_gbtSUG_non),...
+    IRCSUG_FN_err_non(b_gbtSUG_non), GBTSUG_FN_err_non(b_gbtSUG_non)];
+
 Y = abs([ygbt_non; yircSUG_non; ygbtSUG_non]);
 bar(Y)
 title('Natural Frequency Estimate Error at specific Car Velocity of Air Spring')
@@ -217,7 +222,7 @@ ylabel('Error %')
 xlabel({['1: At ', num2str(init_params.vLin(b_gbt_non), 4), ' km/h (at max(BVA) GB/T type)'];
         ['2: At ', num2str(init_params.vLin(b_ircSUG_non), 4), ' km/h (at max(BVA) IRC suggestion type)'];
         ['3: At ', num2str(init_params.vLin(b_gbtSUG_non), 4), ' km/h (at max(BVA) GB/T suggestion type)']});
-legend(roadirc.roadtype, roadgbt.roadtype, roadircSUG.roadtype, roadgbtSUG.roadtype);
+legend('Old method', roadirc.roadtype, roadgbt.roadtype, roadircSUG.roadtype, roadgbtSUG.roadtype);
 
 
 
@@ -226,9 +231,10 @@ legend(roadirc.roadtype, roadgbt.roadtype, roadircSUG.roadtype, roadgbtSUG.roadt
 figure(5)
 % X = [init_params.vLin(b_gbt_non), init_params.vLin(b_ircSUG_non), init_params.vLin(b_gbtSUG_non)]
 % x = [1980 1990 2000];
-ygbt_lin = [IRC_FN_err_lin(b_gbt_lin), GBT_FN_err_lin(b_gbt_lin), IRCSUG_FN_err_lin(b_gbt_lin), GBTSUG_FN_err_lin(b_gbt_lin)];
-yircSUG_lin = [IRC_FN_err_lin(b_ircSUG_lin), GBT_FN_err_lin(b_ircSUG_lin), IRCSUG_FN_err_lin(b_ircSUG_lin), GBTSUG_FN_err_lin(b_ircSUG_lin)];
-ygbtSUG_lin = [IRC_FN_err_lin(b_gbtSUG_lin), GBT_FN_err_lin(b_gbtSUG_lin), IRCSUG_FN_err_lin(b_gbtSUG_lin), GBTSUG_FN_err_lin(b_gbtSUG_lin)];
+ygbt_lin = [fn_old_err_lin, IRC_FN_err_lin(b_gbt_lin), GBT_FN_err_lin(b_gbt_lin), IRCSUG_FN_err_lin(b_gbt_lin), GBTSUG_FN_err_lin(b_gbt_lin)];
+yircSUG_lin = [fn_old_err_lin, IRC_FN_err_lin(b_ircSUG_lin), GBT_FN_err_lin(b_ircSUG_lin), IRCSUG_FN_err_lin(b_ircSUG_lin), GBTSUG_FN_err_lin(b_ircSUG_lin)];
+ygbtSUG_lin = [fn_old_err_lin, IRC_FN_err_lin(b_gbtSUG_lin), GBT_FN_err_lin(b_gbtSUG_lin), IRCSUG_FN_err_lin(b_gbtSUG_lin), GBTSUG_FN_err_lin(b_gbtSUG_lin)];
+
 Y = abs([ygbt_lin; yircSUG_lin; ygbtSUG_lin]);
 bar(Y)
 title('Natural Frequency Estimate Error at specific Car Velocity of Leaf Spring')
@@ -237,16 +243,17 @@ ylabel('Error %')
 xlabel({['1: At ', num2str(init_params.vLin(b_gbt_lin), 4), ' km/h (at max(BVA) GB/T type)'];
         ['2: At ', num2str(init_params.vLin(b_ircSUG_lin), 4), ' km/h (at max(BVA) IRC suggestion type)'];
         ['3: At ', num2str(init_params.vLin(b_gbtSUG_lin), 4), ' km/h (at max(BVA) GB/T suggestion type)']});
-legend(roadirc.roadtype, roadgbt.roadtype, roadircSUG.roadtype, roadgbtSUG.roadtype);
+legend('Old method', roadirc.roadtype, roadgbt.roadtype, roadircSUG.roadtype, roadgbtSUG.roadtype);
 
 
 
 
 
 figure(6)
-ygbt_non = [IRC_ZT_err_non(b_gbt_non), GBT_ZT_err_non(b_gbt_non), IRCSUG_ZT_err_non(b_gbt_non), GBTSUG_ZT_err_non(b_gbt_non)];
-yircSUG_non = [IRC_ZT_err_non(b_ircSUG_non), GBT_ZT_err_non(b_ircSUG_non), IRCSUG_ZT_err_non(b_ircSUG_non), GBTSUG_ZT_err_non(b_ircSUG_non)];
-ygbtSUG_non = [IRC_ZT_err_non(b_gbtSUG_non), GBT_ZT_err_non(b_gbtSUG_non), IRCSUG_ZT_err_non(b_gbtSUG_non), GBTSUG_ZT_err_non(b_gbtSUG_non)];
+ygbt_non = [zt_old_err_non, IRC_ZT_err_non(b_gbt_non), GBT_ZT_err_non(b_gbt_non), IRCSUG_ZT_err_non(b_gbt_non), GBTSUG_ZT_err_non(b_gbt_non)];
+yircSUG_non = [zt_old_err_non, IRC_ZT_err_non(b_ircSUG_non), GBT_ZT_err_non(b_ircSUG_non), IRCSUG_ZT_err_non(b_ircSUG_non), GBTSUG_ZT_err_non(b_ircSUG_non)];
+ygbtSUG_non = [zt_old_err_non, IRC_ZT_err_non(b_gbtSUG_non), GBT_ZT_err_non(b_gbtSUG_non), IRCSUG_ZT_err_non(b_gbtSUG_non), GBTSUG_ZT_err_non(b_gbtSUG_non)];
+
 Y = abs([ygbt_non; yircSUG_non; ygbtSUG_non]);
 bar(Y)
 title('Damping Ratio Estimate Error at specific Car Velocity of Air Spring')
@@ -255,14 +262,14 @@ ylabel('Error %')
 xlabel({['1: At ', num2str(init_params.vLin(b_gbt_non), 4), ' km/h (at max(BVA) GB/T type)'];
         ['2: At ', num2str(init_params.vLin(b_ircSUG_non), 4), ' km/h (at max(BVA) IRC suggestion type)'];
         ['3: At ', num2str(init_params.vLin(b_gbtSUG_non), 4), ' km/h (at max(BVA) GB/T suggestion type)']});
-legend(roadirc.roadtype, roadgbt.roadtype, roadircSUG.roadtype, roadgbtSUG.roadtype);
+legend('Old method', roadirc.roadtype, roadgbt.roadtype, roadircSUG.roadtype, roadgbtSUG.roadtype);
 ylim([0, 30])
 
 
 figure(7)
-ygbt_lin = [IRC_ZT_err_lin(b_gbt_lin), GBT_ZT_err_lin(b_gbt_lin), IRCSUG_ZT_err_lin(b_gbt_lin), GBTSUG_ZT_err_lin(b_gbt_lin)];
-yircSUG_lin = [IRC_ZT_err_lin(b_ircSUG_lin), GBT_ZT_err_lin(b_ircSUG_lin), IRCSUG_ZT_err_lin(b_ircSUG_lin), GBTSUG_ZT_err_lin(b_ircSUG_lin)];
-ygbtSUG_lin = [IRC_ZT_err_lin(b_gbtSUG_lin), GBT_ZT_err_lin(b_gbtSUG_lin), IRCSUG_ZT_err_lin(b_gbtSUG_lin), GBTSUG_ZT_err_lin(b_gbtSUG_lin)];
+ygbt_lin = [zt_old_err_lin, IRC_ZT_err_lin(b_gbt_lin), GBT_ZT_err_lin(b_gbt_lin), IRCSUG_ZT_err_lin(b_gbt_lin), GBTSUG_ZT_err_lin(b_gbt_lin)];
+yircSUG_lin = [zt_old_err_lin, IRC_ZT_err_lin(b_ircSUG_lin), GBT_ZT_err_lin(b_ircSUG_lin), IRCSUG_ZT_err_lin(b_ircSUG_lin), GBTSUG_ZT_err_lin(b_ircSUG_lin)];
+ygbtSUG_lin = [zt_old_err_lin, IRC_ZT_err_lin(b_gbtSUG_lin), GBT_ZT_err_lin(b_gbtSUG_lin), IRCSUG_ZT_err_lin(b_gbtSUG_lin), GBTSUG_ZT_err_lin(b_gbtSUG_lin)];
 Y = abs([ygbt_lin; yircSUG_lin; ygbtSUG_lin]);
 bar(Y)
 title('Damping Ratio Estimate Error at specific Car Velocity of Leaf Spring')
@@ -271,7 +278,7 @@ ylabel('Error %')
 xlabel({['1: At ', num2str(init_params.vLin(b_gbt_lin), 4), ' km/h (at max(BVA) GB/T type)'];
         ['2: At ', num2str(init_params.vLin(b_ircSUG_lin), 4), ' km/h (at max(BVA) IRC suggestion type)'];
         ['3: At ', num2str(init_params.vLin(b_gbtSUG_lin), 4), ' km/h (at max(BVA) GB/T suggestion type)']});
-legend(roadirc.roadtype, roadgbt.roadtype, roadircSUG.roadtype, roadgbtSUG.roadtype);
+legend('Old method', roadirc.roadtype, roadgbt.roadtype, roadircSUG.roadtype, roadgbtSUG.roadtype);
 ylim([0, 30])
 
 
