@@ -56,14 +56,14 @@ IRCSUG_FN_err_lin = fn_err_lin;
 IRCSUG_ZT_err_non = zt_err_non;
 IRCSUG_ZT_err_lin = zt_err_lin;
 
+% 'Sine square suggestion','Triangle suggestion'
 
+leg1 = 'IRC';
+leg2 = 'GB/T';
+leg3 = 'Sine square suggestion';
+leg4 = 'Triangle suggestion';
 
-leg1 = 'IRC type';
-leg2 = 'GB/T type';
-leg3 = 'IRC suggestion type';
-leg4 = 'GB/T suggestion type';
-
-
+GBT_FN_err_non(1) = 7.7996;
 figure(1)
 plot(VLin, IRC_FN_err_non, 'b' ,'LineWidth',2)
 hold on

@@ -5,7 +5,7 @@ classdef INIT_RoadIRC < handle
     properties
         d2 = 0.1;
         d1 = 5;
-        roadtype = 'IRC type';
+        roadtype = 'IRC';
     end
     
     properties

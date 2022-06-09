@@ -1,10 +1,34 @@
-clc
+clc; clear; close all;
 
-n = 50000000;
-S = 0;
-for i = 1:n
-    S = S + i;
+
+thang = 12;
+nam = 10;
+tk = 0.5;
+luongkhoidiem = 10;
+tangluong = 2;
+
+
+luong = luongkhoidiem;
+
+tongtietkiem = 0;
+for i = 1 : nam
+    tongtietkiem = tongtietkiem + luong*thang*tk;
+    
+    luong = luong + tangluong
 end
 
-disp(num2str(S))
+tongtietkiem
+
+
+
+
+
+
+
+
+
+
+
+
+
 

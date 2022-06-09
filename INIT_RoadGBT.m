@@ -5,7 +5,7 @@ classdef INIT_RoadGBT < handle
     properties
         d2 = 0.04;
         d1 = 0.4;
-        roadtype = 'GB/T type';
+        roadtype = 'GB/T';
     end
     
     properties

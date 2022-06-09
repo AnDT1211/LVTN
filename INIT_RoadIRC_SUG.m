@@ -5,7 +5,7 @@ classdef INIT_RoadIRC_SUG < handle
     properties
         d2 = 0.05;
         d1 = 1;
-        roadtype = 'IRC Suggestion type';
+        roadtype = 'Sine square suggestion';
     end
     
     properties

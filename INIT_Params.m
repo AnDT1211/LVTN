@@ -5,7 +5,7 @@ classdef INIT_Params < handle
     properties
         v = 10/3.6;
         t = linspace(0,3,1e4);
-        vLin = linspace(0,100,1e2);
+        vLin = linspace(0,100,1.5e2);
     end
     
     properties

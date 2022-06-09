@@ -35,6 +35,7 @@ classdef INIT < handle
             
             
             KS = airspring.Get_LinearStiff();
+            
             M_lin = [obj.mu     0;
                         0   obj.ms];
                     
@@ -66,7 +67,7 @@ classdef INIT < handle
             A = inv(M_lin)*K_lin;
             [~,D]   = eig(A);
             
-%             FN = sqrt(D)/(2*pi)
+            FN = sqrt(D)/(2*pi);
             ZETA = C_lin/(2*M_lin*sqrt(D));
             
             

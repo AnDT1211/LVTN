@@ -5,7 +5,7 @@ classdef INIT_RoadGBT_SUG < handle
     properties
         d2 = 0.05;
         d1 = 1;
-        roadtype = 'GB/T Suggestion type';
+        roadtype = 'Triangle suggestion';
     end
     
     properties
